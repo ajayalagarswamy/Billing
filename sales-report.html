@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sales Report - K.A.N EGG MART</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">K.A.N EGG MART</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Menu</a></li>
+                <li><a href="cart.html" class="cart-link">
+                    <span class="cart-link-text">Cart</span>
+                    <span class="cart-count">0</span>
+                    <span class="cart-total">₹0</span>
+                </a></li>
+                <li><a href="admin.html">Manage Menu</a></li>
+                <li><a href="sales-report.html">Sales Report</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+        <h1 class="page-title">📊 Sales Reports</h1>
+        
+        <div class="report-filters">
+            <div class="filter-group">
+                <label for="period-type">Period</label>
+                <select id="period-type">
+                    <option value="daily">Daily</option>
+                    <option value="weekly">Weekly</option>
+                    <option value="monthly" selected>Monthly</option>
+                    <option value="annual">Annual</option>
+                    <option value="custom">Custom Range</option>
+                </select>
+            </div>
+            
+            <div class="filter-group" id="filter-date">
+                <label for="report-date">Date (for Daily/Weekly)</label>
+                <input type="date" id="report-date">
+            </div>
+            
+            <div class="filter-group" id="filter-month">
+                <label for="report-month">Month</label>
+                <input type="month" id="report-month">
+            </div>
+            
+            <div class="filter-group" id="filter-year">
+                <label for="report-year">Year</label>
+                <select id="report-year"></select>
+            </div>
+            
+            <div class="filter-group" id="filter-custom" style="display:none;">
+                <label>Custom Range</label>
+                <div style="display:flex; gap:8px; align-items:center;">
+                    <div style="flex:1">
+                        <label style="font-size:12px; color:#333; display:block;">Start</label>
+                        <input type="date" id="report-start">
+                    </div>
+                    <div style="flex:1">
+                        <label style="font-size:12px; color:#333; display:block;">End</label>
+                        <input type="date" id="report-end">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="sales-report-content">
+            <!-- Sales report will be loaded here -->
+        </div>
+
+        <!-- Bill History Section (individual bills for the selected period) -->
+        <div id="bill-history" style="margin-top:24px;">
+            <h2 style="color:white; margin-bottom:12px;">🧾 Bill History</h2>
+            <div id="bill-history-container">
+                <!-- Bill history table injected here -->
+            </div>
+        </div>
+
+        <!-- Bill View Modal -->
+        <div id="bill-view-modal" class="payment-modal" aria-hidden="true">
+            <div class="modal-content sales-modal-content" role="dialog" aria-modal="true" aria-labelledby="bill-view-title">
+                <button class="modal-close" onclick="closeBillModal()" title="Close">✕</button>
+                <h2 id="bill-view-title">Bill Details</h2>
+                <div id="bill-view-body" style="margin-top:10px; max-height:50vh; overflow:auto;">
+                    <!-- Bill details populated here -->
+                </div>
+                <div class="modal-actions" style="margin-top:12px; justify-content:flex-end; gap:8px;">
+                    <button class="btn btn-primary" id="bill-view-print">Print</button>
+                    <button class="btn btn-secondary" onclick="closeBillModal()">Close</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sales Item Modal (shows transactions for a selected item) -->
+        <div id="sales-item-modal" class="payment-modal" aria-hidden="true">
+            <div class="modal-content sales-modal-content" role="dialog" aria-modal="true" aria-labelledby="sales-item-modal-title">
+                <button class="modal-close" onclick="closeSalesItemModal()" title="Close">✕</button>
+                <h2 id="sales-item-modal-title">Transactions</h2>
+                <div id="sales-item-list" style="max-height:50vh; overflow:auto; margin-top:10px;">
+                    <!-- Transaction rows injected here -->
+                </div>
+                <div class="modal-actions" style="margin-top:16px; justify-content: flex-end; gap:8px;">
+                    <button class="btn btn-primary" onclick="printAllMatched()">Print All</button>
+                    <button class="btn btn-secondary" onclick="closeSalesItemModal()">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/menu.js"></script>
+    <script src="js/sales.js"></script>
+</body>
+</html>
+

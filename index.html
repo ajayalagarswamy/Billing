@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>K.A.N EGG MART - Menu</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">K.A.N EGG MART</div>
+            <!-- Last payment badge: updated after payments (paid/declined) -->
+            <div id="last-payment-badge" class="last-payment-badge" title="Last payment status" style="display:none; margin-left:12px; font-weight:600;color:#2e7d32"></div>
+            <ul class="nav-links">
+                <li><a href="index.html">Menu</a></li>
+                <li><a href="cart.html" class="cart-link">
+                    <span class="cart-link-text">Cart</span>
+                    <span class="cart-count">0</span>
+                    <span class="cart-total">₹0</span>
+                </a></li>
+                <li><a href="admin.html">Manage Menu</a></li>
+                <li><a href="sales-report.html">Sales Report</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+        <h1 class="page-title">🍳 Our Product Details </h1>
+        <div id="menu-container" class="menu-container">
+            <!-- Menu items will be loaded here -->
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/menu.js"></script>
+</body>
+</html>
+

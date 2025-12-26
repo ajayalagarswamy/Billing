@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Menu - K.A.N EGG MART</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">K.A.N EGG MART</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Menu</a></li>
+                <li><a href="cart.html" class="cart-link">
+                    <span class="cart-link-text">Cart</span>
+                    <span class="cart-count">0</span>
+                    <span class="cart-total">₹0</span>
+                </a></li>
+                <li><a href="admin.html">Manage Menu</a></li>
+                <li><a href="sales-report.html">Sales Report</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+        <h1 class="page-title">Manage Menu</h1>
+        
+        <!-- Add/Edit Menu Item Form -->
+        <div class="admin-section">
+            <h2>➕ Add/Edit Menu Item</h2>
+            <form id="menu-form">
+                <div class="form-group">
+                    <label for="item-name">Item Name *</label>
+                    <input type="text" id="item-name" name="name" required placeholder="e.g., White Eggs">
+                </div>
+                
+                <div class="form-group">
+                    <label for="item-price">Price (₹) *</label>
+                    <input type="number" id="item-price" name="price" required min="0" step="0.01" placeholder="50.00">
+                </div>
+                
+                <div class="form-group">
+                    <label for="item-category">Category</label>
+                    <select id="item-category" name="category">
+                        <option value="eggs">Eggs</option>
+                        <option value="dairy">Dairy</option>
+                        <option value="bakery">Bakery</option>
+                        <option value="grocery">Grocery</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="image-url">Image URL</label>
+                    <input type="text" id="image-url" name="image-url" placeholder="https://example.com/image.jpg">
+                    <small style="color: #666; display: block; margin-top: 5px;">Or upload an image below</small>
+                </div>
+                
+                <div class="form-group">
+                    <label for="item-image">Upload Image</label>
+                    <input type="file" id="item-image" name="image" accept="image/*">
+                </div>
+                
+                <button type="submit" class="btn btn-primary">Add Item</button>
+                <button type="button" class="btn btn-secondary" onclick="resetForm()" style="margin-left: 10px;">Reset</button>
+            </form>
+        </div>
+
+        <!-- UPI ID Configuration -->
+        <div class="admin-section">
+            <h2>💳 Payment Settings</h2>
+            <div class="form-group">
+                <label for="upi-id-input">UPI ID</label>
+                <input type="text" id="upi-id-input" placeholder="your-upi-id@paytm" style="max-width: 400px;">
+                <button type="button" class="btn btn-primary" onclick="saveUPIId()" style="margin-top: 10px;">Save UPI ID</button>
+            </div>
+            
+            <div class="form-group" style="margin-top: 25px;">
+                <label for="qr-code-upload">Static QR Code Image (Optional)</label>
+                <p style="font-size: 14px; color: #666; margin-bottom: 10px;">
+                    Upload a static QR code image. If uploaded, this will be used instead of auto-generated QR code.
+                </p>
+                <input type="file" id="qr-code-upload" accept="image/*" onchange="handleQRCodeUpload(event)" style="margin-bottom: 10px;">
+                <div id="qr-code-preview" style="margin-top: 15px; display: none;">
+                    <p style="font-size: 14px; color: #28a745; margin-bottom: 10px;">✓ QR Code uploaded successfully</p>
+                    <img id="qr-code-preview-img" src="" alt="QR Code Preview" style="max-width: 200px; border-radius: 10px; border: 2px solid #e2e8f0;">
+                    <button type="button" class="btn btn-danger" onclick="removeQRCode()" style="margin-top: 10px; margin-left: 10px;">Remove QR Code</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Menu Items List -->
+        <div class="admin-section">
+            <h2>📋 Current Menu Items <span style="font-size: 16px; font-weight: 400; color: #666;">(Click price to edit quickly)</span></h2>
+            <div id="menu-items-list" class="menu-items-list">
+                <!-- Menu items will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/menu.js"></script>
+    <script src="js/admin.js"></script>
+</body>
+</html>
+

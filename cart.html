@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart - K.A.N EGG MART</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">K.A.N EGG MART</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Menu</a></li>
+                <li><a href="cart.html" class="cart-link">
+                    <span class="cart-link-text">Cart</span>
+                    <span class="cart-count">0</span>
+                    <span class="cart-total">₹0</span>
+                </a></li>
+                <li><a href="admin.html">Manage Menu</a></li>
+                <li><a href="sales-report.html">Sales Report</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+        <h1 class="page-title">🛒 Your Cart</h1>
+        
+        <div class="cart-section">
+            <div id="empty-cart-msg" class="empty-cart-msg">
+                <h2>Your cart is empty</h2>
+                <p>Add items from the menu to get started!</p>
+                <a href="index.html" class="btn btn-primary" style="display: inline-block; margin-top: 20px;">Go to Menu</a>
+            </div>
+            
+            <div id="cart-content" style="display: none;">
+                <div id="cart-items">
+                    <!-- Cart items will be loaded here -->
+                </div>
+            </div>
+        </div>
+
+        <div id="bill-section" class="bill-section" style="display: none;">
+            <h2>Bill Summary</h2>
+            <div class="bill-row">
+                <span>Subtotal:</span>
+                <span id="subtotal">₹0.00</span>
+            </div>
+            <div class="bill-row">
+                <span>Tax:</span>
+                <span id="tax">₹0.00</span>
+            </div>
+            <div class="bill-row">
+                <span>Total:</span>
+                <span id="total">₹0.00</span>
+            </div>
+
+            <!-- Payment status (shows when payment done in cash) -->
+            <div id="payment-status" style="display:none; margin-top:10px; align-items:center;">
+                <img id="cash-icon-small" src="images/cash.svg" alt="Cash" style="width:28px;height:28px;vertical-align:middle;margin-right:8px;display:inline-block;"> 
+                <span id="payment-status-text" style="vertical-align:middle;color:#2e7d32;font-weight:600">Paid in Cash</span>
+            </div>
+
+            <div class="bill-actions">
+                <button class="btn btn-danger" onclick="clearCart()">Clear Cart</button>
+                <button class="btn btn-secondary" onclick="printBill()">Print Bill</button>
+                <button class="btn btn-primary" onclick="processPayment()">Pay Now</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Payment Modal -->
+    <div id="payment-modal" class="payment-modal">
+        <div class="modal-content">
+            <h2>Payment</h2>
+            <p>Total Amount: <strong id="payment-amount">₹0.00</strong></p>
+            
+            <div style="margin: 15px 0; text-align: left;">
+                <label style="font-weight: 600; color: #333;">Payment Mode</label>
+                <div style="display: flex; gap: 12px; margin-top: 8px; align-items: center;">
+                    <label><input type="radio" name="payment-mode" value="UPI" checked onchange="setPaymentMode('UPI')"> UPI</label>
+                    <label><input type="radio" name="payment-mode" value="Cash" onchange="setPaymentMode('Cash')"> Cash</label>
+                </div>
+            </div>
+
+            <p id="upi-info" style="font-size: 14px; color: #666;">UPI ID: <strong id="payment-upi-id">your-upi-id@paytm</strong></p>
+            <p id="qr-hint" style="font-size: 14px; color: #666;">Scan the QR code below to pay</p>
+            <div id="qr-code-container">
+                <!-- QR code will be generated here -->
+            </div>
+            <div id="cash-hint" style="display:none; margin-top:10px; font-size:14px; color:#666;">
+                Collect cash from customer and tap "Payment Done".
+            </div>
+            <div class="modal-actions">
+                <button class="btn btn-secondary" onclick="closePaymentModal()">Cancel</button>
+                <button class="btn btn-primary" onclick="confirmPayment()">Payment Done</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/menu.js"></script>
+    <script src="js/cart.js"></script>
+</body>
+</html>
+
